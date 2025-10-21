@@ -65,12 +65,6 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-### Production Installation
-
-```bash
-pip install supabase-connector
-```
-
 ## ⚙️ Configuration
 
 1. Create a `.env` file in the project root:
@@ -100,7 +94,7 @@ CREATE INDEX idx_conversation_history_session_id ON conversation_history(session
 CREATE INDEX idx_conversation_history_created_at ON conversation_history(created_at);
 ```
 
-### Services Table (Optional)
+### Services Table
 
 ```sql
 CREATE TABLE services (
@@ -121,7 +115,7 @@ CREATE INDEX idx_services_is_active ON services(is_active);
 CREATE INDEX idx_services_name ON services USING gin(to_tsvector('english', name));
 ```
 
-### Info Table (Optional)
+### Info Table
 
 For company/contact information management (single record):
 
@@ -413,32 +407,6 @@ python tests/test_integration.py
 - **is_active** (bool, optional): Filter by active status (True/False)
 - **limit** (int, optional): Maximum number of records to return
 
-#### Examples of get_services() Usage
-```python
-# Get all services
-all_services = get_services()
-
-# Get specific service
-service = get_services(service_id=1)
-
-# Get services by category
-spa_services = get_services(category="massage therapy")
-
-# Search by name (partial)
-massage_services = get_services(name="deep tissue")
-
-# Only active services
-active = get_services(is_active=True)
-
-# Combined filters
-filtered = get_services(
-    category="spa",
-    name="massage", 
-    is_active=True,
-    limit=10
-)
-```
-
 ## 🔍 Troubleshooting
 
 ### Common Issues
@@ -498,22 +466,6 @@ mypy src/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 Support
-
-If you have any questions or issues, please:
-
-1. Check the troubleshooting section above
-2. Look at existing issues in the repository
-3. Create a new issue with detailed information about your problem
-
 ## � Schema Configuration
 
 ### Using Custom Schemas
@@ -544,15 +496,3 @@ If you're migrating from the old flat file structure:
 
 2. Services API is new - replace any custom service queries with the new functions
 3. Conversation API remains the same for backward compatibility
-
-## 🎯 Project Roadmap
-
-- [x] Core Supabase connection management
-- [x] Conversation history functionality  
-- [x] Services management with flexible filtering
-- [x] Comprehensive testing suite
-- [x] Modern Python packaging
-- [ ] Real-time subscriptions support
-- [ ] Batch operations for large datasets  
-- [ ] Advanced query builders
-- [ ] Plugin system for custom extensions
