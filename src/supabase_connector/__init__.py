@@ -11,9 +11,31 @@ __email__ = "d.viera1997@gmail.com"
 
 from .client import SupabaseConnector
 from .conversation import get_conversation_history, add_conversation_history
+from .services import (
+    get_services,
+    get_service_categories,
+    get_services_summary
+)
+from .info import (
+    get_info,
+    get_info_name,
+    get_info_phone,
+    get_info_address,
+    get_info_email,
+    get_info_description,
+)
 
 __all__ = [
     "SupabaseConnector",
     "get_conversation_history", 
-    "add_conversation_history"
+    "add_conversation_history",
+    "get_services",
+    "get_service_categories",
+    "get_services_summary",
+    "get_info",
+    "get_info_name",
+    "get_info_phone", 
+    "get_info_address",
+    "get_info_email",
+    "get_info_description",
 ]
